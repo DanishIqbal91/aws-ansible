@@ -1,5 +1,4 @@
 # aws-ansible
-# aws-ansible
 Configure local machine
 Configuration and Credential Files AWS
 yum install awscli
