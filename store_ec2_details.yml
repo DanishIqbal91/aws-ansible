@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  sudo: yes
+  tasks:
+    - name: Execute  script
+      script: /root/botoaws/ec2_details.py 
