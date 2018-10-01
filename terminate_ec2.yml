@@ -15,3 +15,4 @@
        instance_ids: "{{ ec2_id }}"
        wait: true
     
+#ansible-playbook terminate_ec2.yml  --extra-vars "ec2_id=i-0477f32045cfb3b31"
