@@ -7,7 +7,7 @@
   vars:
     region: us-east-1
     instance_type: t2.micro
-    ami: ami-04681a1dbd79675a5  # Ubuntu 16.04 LTS
+    ami: ami-04681a1dbd79675a5  
     keypair: my-key  # pem file name
     security_group: default
     groupname: webservers
