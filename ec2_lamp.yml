@@ -1,0 +1,42 @@
+---
+- name: Create a new Demo EC2 instance
+  hosts: localhost
+  connection: local
+  gather_facts: False
+
+  vars:
+    region: us-east-1
+    instance_type: t2.micro
+    ami: ami-04681a1dbd79675a5  # Ubuntu 16.04 LTS
+    keypair: my-key  # pem file name
+    security_group: default
+    groupname: webservers
+  tasks:
+    - name: Create an ec2 instance
+      ec2:
+        key_name: "{{ keypair }}"
+        group: "{{security_group}}"  # security group name
+        instance_type: "{{ instance_type}}"
+        image: "{{ ami }}"
+        wait: true
+        region: "{{ region }}"
+        count: 1  # default
+        count_tag:
+           Name: Demo
+        instance_tags:
+           Name: Demo2
+      register: ec2
+    
+    - name: Add new instance to host group
+      add_host: hostname={{ item.public_ip }} groupname={{ groupname }}
+      with_items: "{{ ec2.instances }}"
+
+    - name: Wait for SSH to come up
+      wait_for: host={{ item.public_dns_name }} port=22 delay=120 timeout=320 state=started
+      with_items: "{{ ec2.instances }}"
+- name: configure new instance
+  hosts: webservers
+  sudo: yes 
+  remote_user: ec2-user
+  gather_facts: True
+- include: lamp_ec2.yml
