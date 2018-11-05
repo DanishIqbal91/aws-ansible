@@ -4,7 +4,7 @@ Configuration and Credential Files AWS
 yum install awscli
 ~/.aws/credentials
 [default]
-aws_access_key_id=AKIAIOSFOSSSSSSDNN7EXAMPLEXXXXXXXXXXXXX
+aws_access_key_id=AKOSSSSSSDNN7EXAMPLEXXXXXXXXXXXXX
 aws_secret_access_key=wJalrXUtxxxxxxxxxxxxnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 
 ~/.aws/config
